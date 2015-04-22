@@ -1,0 +1,73 @@
+
+/* Message */
+
+#ad-message-box {
+    width: 600px;
+    z-index: 9999;
+    transition: top 0.3s,
+                bottom 0.3s,
+                left 0.3s,
+                right 0.3s;
+}
+
+ul.ad-messages-list {
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.34);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+ul.ad-messages-list li {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.19);
+    background-color: #d2c369;
+}
+
+ul.ad-messages-list li.success {
+    background-color: #A4EBA3;
+}
+
+ul.ad-messages-list li.error {
+    background-color: #e68e8e;
+}
+
+ul.ad-messages-list li.notice {
+    background-color: #d2c369;
+}
+
+@media all and (max-width: 600px) {
+    #ad-message-box {
+        width: 300px;
+    }
+}
+
+/* Message popup */
+#ad-message-popup {
+    background: #b79e03;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.34);
+    color: #fff;
+    font-size: 13px;
+    min-width: 300px;
+    text-align: center;
+}
+
+#ad-message-popup p {
+    margin: 0;
+    padding: 10px 15px;
+    color: rgba(255, 255, 255, 0.9);
+    cursor: default;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#ad-message-popup .notice {
+    background-color: #b79e03;
+}
+
+#ad-message-popup .error {
+    background-color: #BA3631;
+}
+
+#ad-message-popup .success {
+    background-color: #41ae22;
+}

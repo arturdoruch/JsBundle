@@ -1,0 +1,20 @@
+{
+    "name": "arturdoruch/js-bundle",
+    "description": "JavaScript scripts.",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "keywords": ["symfony2", "bundle"],
+    "authors": [
+        {
+            "name": "Artur Doruch",
+            "email": "arturdoruch@interia.pl"
+        }
+    ],
+    "require": {
+        "symfony/framework-bundle": ">2.0",
+        "arturdoruch/js-vendor-bundle": "dev-master"
+    },
+    "autoload": {
+        "psr-4" : { "ArturDoruch\\JsBundle\\" : "" }
+    }
+}
