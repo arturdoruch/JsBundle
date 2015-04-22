@@ -1,6 +1,6 @@
 {
     "name": "arturdoruch/js-bundle",
-    "description": "JavaScript scripts.",
+    "description": "JavaScript utilities.",
     "type": "symfony-bundle",
     "license": "MIT",
     "keywords": ["symfony2", "bundle"],

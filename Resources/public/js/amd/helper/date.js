@@ -2,6 +2,16 @@
  * Created by Artur on 2015-01-04.
  */
 
+/**
+ * Counts code time execution.
+ */
+function TimeExecute() {
+    this.startTime = new Date().getTime();
+    this.get = function() {
+        return new Date().getTime() - this.startTime;
+    }
+}
+
 define([], function() {
 
     /**
@@ -60,19 +70,6 @@ define([], function() {
         this.setDate(this.getDate() + days);
         return this;
     };
-
-    /**
-     * Counts code time execution.
-     */
-    function timeExecute() {
-        this.startTime = new Date().getTime();
-        this.get = function() {
-            return new Date().getTime() - this.startTime;
-        }
-    }
-
-    const DAY = 60*60*24; // 86400 seconds
-    const DAY_IN_MILLISECONDS = 1000*60*60*24;
 
     var monthFormat = {
         number: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
