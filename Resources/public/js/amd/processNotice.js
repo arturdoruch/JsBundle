@@ -110,7 +110,6 @@ define(['./domElementBuilder'], function(ElementBuilder) {
          * @param showLoader bool
          */
         graphicLoader: function (action, showLoader) {
-            showLoader = showLoader || true;
             toggleElement('noticeLoader', (action == 'add' && showLoader === true));
         }
     };
