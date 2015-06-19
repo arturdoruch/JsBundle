@@ -29,8 +29,8 @@ define([
 
         return [
             ['change', $filterForm.find('select'), filter],
-            ['change', $filterForm.find('input[name="radio"]'), filter],
-            ['change', $filterForm.find('input[name="checkbox"]'), filter],
+            ['change', $filterForm.find('input[type="radio"]'), filter],
+            ['change', $filterForm.find('input[type="checkbox"]'), filter],
             ['click', $('#filter_table_filter'), filter],
             ['click', $('#filter_table_reset'), reset]
         ]

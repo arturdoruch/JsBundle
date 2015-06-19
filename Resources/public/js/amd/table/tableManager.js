@@ -12,30 +12,30 @@ define([
 
     var $_table,
         $pagination,
-        _paginationCntrCallback,
+        _paginationCallback,
+        updateTableCallback = function() {},
         _updateTableConfig = {
-            callback: function() {},
             processName: 'Getting table items',
             showLoader: true
         },
         queryParams = {},
-        _events = [];
+        _events = [],
+        timeout;
 
     /**
      * @param {object} $table Table container
      *
      * @param {object} [updateTableConfig] Config to initialize the TableManager with
-     * @param {callback} [updateTableConfig.callback] Callback function that will be called, when table will be updated.
-     * @param {string}   [updateTableConfig.processName = 'Getting table items']
-     * @param {bool}     [updateTableConfig.showLoader = true]
+     * @param {string} [updateTableConfig.processName = 'Getting table items'] Message showing while table is updated.
+     * @param {bool}   [updateTableConfig.showLoader = true] Did image loader should be displayed while table is updated.
      *
-     * @param {function} [paginationCntrCallback] Callback function that must returns pagination container.
+     * @param {function} [paginationCallback] Callback function that must returns pagination container.
      * @constructor
      */
-    var TableManager = function($table, updateTableConfig, paginationCntrCallback) {
+    var TableManager = function($table, updateTableConfig, paginationCallback) {
         $_table = $table;
         $.extend(_updateTableConfig, updateTableConfig);
-        _paginationCntrCallback = paginationCntrCallback;
+        _paginationCallback = paginationCallback;
 
         subscriptions();
         Filter.init();
@@ -50,7 +50,7 @@ define([
     function setEvents() {
         // Attach events
         try {
-            Pagination.init(_paginationCntrCallback.apply(), getTableList);
+            Pagination.init(_paginationCallback.apply(), loadTable);
         } catch(err) {}
 
         Sorting.init($_table, Event);
@@ -61,7 +61,7 @@ define([
     function subscriptions() {
         $.subscribe('table/getTableList', function(e, params, url) {
             addQueryParams(params);
-            getTableList(url);
+            loadTable(url);
         });
     }
 
@@ -69,21 +69,27 @@ define([
         $.extend(queryParams, params);
     }
 
-    function getTableList(url) {
-        Ajax.send({
-            url: url,
-            data: queryParams
-        }, _updateTableConfig.processName, _updateTableConfig.showLoader)
+    function loadTable(url, pushState) {
+        getTableList(url)
             .success(function(html) {
-                historyManager.pushState(html, url);
-                updateTable(html);
+                if (pushState !== false) {
+                    historyManager.pushState(html, url);
+                }
+                updateTable(html, url);
             });
     }
 
-    function updateTable(html) {
+    function getTableList(url) {
+        return Ajax.send({
+            url: url,
+            data: queryParams
+        }, _updateTableConfig.processName, _updateTableConfig.showLoader)
+    }
+
+    function updateTable(html, url) {
         $_table.html(html).show();
         setEvents();
-        _updateTableConfig.callback.apply();
+        updateTableCallback.call(null, url);
     }
 
     TableManager.prototype = {
@@ -96,20 +102,44 @@ define([
             }
         },
 
-        getTableList: function(url) {
-            getTableList(url);
+        /**
+         * Loads table content. Makes ajax request and update table with returned data.
+         *
+         * @param {string} url Url to table content resource, is uses for ajax request.
+         * @param {bool}   [pushState]
+         */
+        loadTable: function(url, pushState) {
+            loadTable(url);
         },
 
-        updateTable: function(html) {
-            updateTable(html);
+        /**
+         * Updates, fills table with given html.
+         *
+         * @param {string} html
+         * @param {string} url Url to current route.
+         */
+        updateTable: function(html, url) {
+            updateTable(html, url);
         },
 
         getTableRows: function() {
             return $_table.find('tbody').find('tr');
         },
 
+        /**
+         * @param {object} params
+         */
         addQueryParams: function(params) {
             addQueryParams(params);
+        },
+
+        /**
+         * Registers callback function that will be called, when table will be updated.
+         *
+         * @param {function} callback
+         */
+        setUpdateTabelCallback: function(callback) {
+            updateTableCallback = callback;
         }
     };
 
