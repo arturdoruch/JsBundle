@@ -40,7 +40,7 @@ define(['../scrollBar'], function(ScrollBar) {
                 element = element[0];
             }
             if (!(element instanceof HTMLElement)) {
-                throw new Error('"element" is not exists or has invalid type. ' +
+                throw new Error('"element" is not exist or has invalid type. ' +
                     'He must be a type of HTMLElement or jQuery object.');
             }
 
