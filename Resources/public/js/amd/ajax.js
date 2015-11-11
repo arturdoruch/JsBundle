@@ -59,7 +59,7 @@ define([
         }
 
         if (!options.hasOwnProperty('url')) {
-            throw new Error('Not defined "url" property in Ajax.make options');
+            throw new Error('Not defined "url" property in Ajax.send options');
         }
     }
 

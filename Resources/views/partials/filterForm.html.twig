@@ -1,18 +1,18 @@
 
 {% if filterForm is defined %}
-    <div class="filter-table-wrapper">
+    <div class="ad-js-filter-form">
         {% form_theme filterForm 'ArturDoruchBootstrapBundle:Form:bootstrap_3_inline.html.twig' %}
         {{ form_start(filterForm) }}
 
-        <div style="display: inline-block;">
+        <div class="button-widgets">
             {{ form_widget(filterForm.reset, {icon: 'remove' }) }}
             {{ form_widget(filterForm.filter, {icon: 'search' }) }}
         </div>
-        <div class="pull-right">
+        <div class="limit-widget">
             {{ form_label(filterForm.limit) }}
             {{ form_widget(filterForm.limit) }}
         </div>
-        <div class="custom-widget">
+        <div class="custom-widgets">
             {{ form_rest(filterForm) }}
         </div>
         {{ form_end(filterForm) }}

@@ -31,7 +31,7 @@ class ResponseUtils
      * Parse json object into array
      *
      * @param string $json JSON object
-     * @param array|string $defaultKeys Default keys (if is array with their values) that should be in returned array.
+     * @param array|string $defaultKeys Default keys (if is array with their values) which should be in returned array.
      *
      * @return array
      */

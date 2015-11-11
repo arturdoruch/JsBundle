@@ -401,10 +401,21 @@ function TimeExecute() {
         },
 
         /**
-         * Returns Image object with src attribute filled by css property "background-image" value.
+         * Returns Image object with src attribute filled by css property "background-image".
+         *
+         * @param {jQuery|HTMLElement} element
+         * @returns {Image}
          */
-        getBackgroundImage: function (imageElement) {
-            return new Image().src = imageElement.css('background-image').replace(/url\(|\)$|"/ig, '');
+        getBackgroundImage: function (element) {
+            var img = new Image(),
+                imgSource = element instanceof jQuery
+                    ? element.css('background-image')
+                    : window.getComputedStyle(element).backgroundImage;
+
+            //img.src = imgSource.replace(/url\(|\)$|"|'/ig, '');
+            img.src = imgSource.slice(5, -2);
+
+            return img;
         }
     };
 

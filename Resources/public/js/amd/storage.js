@@ -46,7 +46,7 @@ define([], function() {
     //     * @param {mixed}  value Data to save.
     //     */
     //    set: function(path, value) {
-    //        Ajax.make({
+    //        Ajax.send({
     //            url: path,
     //            data: value,
     //            type: 'POST'
@@ -60,7 +60,7 @@ define([], function() {
     //     * @returns {*}
     //     */
     //    get: function(path) {
-    //        return Ajax.make({
+    //        return Ajax.send({
     //                url: path
     //            }).done(function(response) {
     //                console.log(response);
