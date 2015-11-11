@@ -83,12 +83,12 @@ define([], function() {
          * @returns {Image}
          */
         getBackgroundImage: function (element) {
-            var img = new Image(),
-                imgSource = element instanceof jQuery
-                    ? element.css('background-image')
-                    : window.getComputedStyle(element).backgroundImage;
+            var img = new Image();
 
-            img.src = imgSource.slice(5, -2);
+            if (element instanceof jQuery) {
+                element = element[0];
+            }
+            img.src = window.getComputedStyle(element).backgroundImage.replace(/url\(|\)$|"|'/ig, '');
 
             return img;
         }

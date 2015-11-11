@@ -17,11 +17,10 @@ define([
         //options.dataType = 'json';
         options.url = properUrl(options.url);
         options = parseOptions(options);
-        //console.log( options );
 
         return $.ajax(options)
             .done(function(response) {
-                //console.log( response );
+
             })
             .always(function() {
                 ProcessNoticeManager.remove(notice);
