@@ -77,17 +77,20 @@ define([], function() {
         },
 
         /**
-         * Gets HTML element CSS styles declarations.
+         * Returns Image object with src attribute filled by css property "background-image".
          *
          * @param {jQuery|HTMLElement} element
-         * @returns {CSSStyleDeclaration}
+         * @returns {Image}
          */
         getBackgroundImage: function (element) {
-            if (element instanceof jQuery) {
-                element = element[0];
-            }
+            var img = new Image(),
+                imgSource = element instanceof jQuery
+                    ? element.css('background-image')
+                    : window.getComputedStyle(element).backgroundImage;
 
-            return window.getComputedStyle(element);
+            img.src = imgSource.slice(5, -2);
+
+            return img;
         }
     };
 
