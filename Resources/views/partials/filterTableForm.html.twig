@@ -1,0 +1,20 @@
+
+{% if filterTableForm is defined %}
+    <div class="ardo-filter-table-form">
+        {% form_theme filterTableForm 'ArturDoruchBootstrapBundle:Form:bootstrap_3_inline.html.twig' %}
+        {{ form_start(filterTableForm) }}
+
+        <div class="button-widgets">
+            {{ form_widget(filterTableForm.reset, {icon: 'remove' }) }}
+            {{ form_widget(filterTableForm.filter, {icon: 'search' }) }}
+        </div>
+        <div class="limit-widget">
+            {{ form_label(filterTableForm.limit) }}
+            {{ form_widget(filterTableForm.limit) }}
+        </div>
+        <div class="custom-widgets">
+            {{ form_rest(filterTableForm) }}
+        </div>
+        {{ form_end(filterTableForm) }}
+    </div>
+{% endif %}
