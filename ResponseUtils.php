@@ -1,12 +1,12 @@
 <?php
-/**
- * @author Artur Doruch <arturdoruch@interia.pl>
- */
 
 namespace ArturDoruch\JsBundle;
 
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @author Artur Doruch <arturdoruch@interia.pl>
+ */
 class ResponseUtils
 {
     /**

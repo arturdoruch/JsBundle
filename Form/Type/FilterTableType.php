@@ -1,7 +1,4 @@
 <?php
-/**
- * @author Artur Doruch <arturdoruch@interia.pl>
- */
 
 namespace ArturDoruch\JsBundle\Form\Type;
 
@@ -9,6 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * @author Artur Doruch <arturdoruch@interia.pl>
+ */
 class FilterTableType extends AbstractType
 {
     public function getName()
