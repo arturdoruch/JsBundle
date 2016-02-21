@@ -5,6 +5,7 @@ namespace ArturDoruch\JsBundle\Composer;
 use Composer\Package\Package;
 use Composer\Package\Version\VersionParser;
 use Composer\Script\Event;
+use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
@@ -12,8 +13,6 @@ use Symfony\Component\Filesystem\Filesystem;
  */
 class ScriptHandler
 {
-    const JS_VERSION = '1.0.0';
-
     /**
      * Downloads js scripts from git repository
      * @link https://github.com/arturdoruch/Js
@@ -24,7 +23,7 @@ class ScriptHandler
     {
         $composer = $event->getComposer();
 
-        $version = self::JS_VERSION;
+        $version = '1.0.1';
         $targetDir = __DIR__ . '/../Resources/public/js';
 
         $versionParser = new VersionParser();
@@ -42,11 +41,20 @@ class ScriptHandler
         $downloader->download($package, $targetDir);
 
         // Remove unwanted files
+        // Remove unwanted files
+        $files = array(
+            $targetDir . '/.git',
+            $targetDir . '/.gitignore'
+        );
+
         $fs = new Filesystem();
-        $fs->remove(array(
-                $targetDir . '/.git',
-                $targetDir . '/.gitignore'
-            ));
+
+        try {
+            //$fs->chmod($files, 0755, 0000, true);
+            $fs->remove($files);
+        } catch (IOException $e) {
+
+        }
     }
 
 }
