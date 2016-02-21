@@ -20,7 +20,8 @@ class FilterTableType extends AbstractType
     {
         $builder
             ->add('limit', 'choice', array(
-                    'choices' => $this->getLimitChoices($options)
+                    'choices' => $this->getLimitChoices($options),
+                    'data' => $options['selected']
                 ))
             ->add('reset', 'reset')
             ->add('filter', 'submit');
@@ -36,11 +37,13 @@ class FilterTableType extends AbstractType
                     40,
                     60,
                     100,
-                )
+                ),
+                'selected' => 40
             ));
 
         $resolver->setAllowedTypes(array(
-                'limit_choices' => 'array'
+                'limit_choices' => 'array',
+                'selected' => 'integer'
             ));
     }
 

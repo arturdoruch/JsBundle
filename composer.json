@@ -1,9 +1,9 @@
 {
     "name": "arturdoruch/js-bundle",
-    "description": "JavaScript utilities.",
+    "description": "Collection of useful JavaScript scripts as Symfony Bundle.",
     "type": "symfony-bundle",
     "license": "MIT",
-    "keywords": ["symfony2", "bundle"],
+    "keywords": ["symfony2", "bundle", "java script", "utilities"],
     "authors": [
         {
             "name": "Artur Doruch",
