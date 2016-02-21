@@ -2,7 +2,6 @@
 
 namespace ArturDoruch\JsBundle\Composer;
 
-use Composer\Composer;
 use Composer\Package\Package;
 use Composer\Package\Version\VersionParser;
 use Composer\Script\Event;
@@ -13,26 +12,25 @@ use Symfony\Component\Filesystem\Filesystem;
  */
 class ScriptHandler
 {
-    const JS_BUNDLE_VERSION = '1.0.0';
+    const JS_VERSION = '1.0.0';
 
     /**
-     * Downloads JavaScript scripts from JsBundle
+     * Downloads js scripts from git repository
      * @link https://github.com/arturdoruch/Js
      *
      * @param Event $event
      */
-    public static function installJsAssets(Event $event)
+    public static function installJs(Event $event)
     {
         $composer = $event->getComposer();
 
-        //$version = self::getVersion($composer);
-        $version = self::JS_BUNDLE_VERSION;
+        $version = self::JS_VERSION;
         $targetDir = __DIR__ . '/../Resources/public/js';
 
         $versionParser = new VersionParser();
         $normalizedVersion = $versionParser->normalize($version);
 
-        $package = new Package('js-bundle', $normalizedVersion, $version);
+        $package = new Package('arturdoruch/js', $normalizedVersion, $version);
         $package->setTargetDir($targetDir);
         $package->setInstallationSource('dist');
         $package->setSourceType('git');
@@ -49,26 +47,6 @@ class ScriptHandler
                 $targetDir . '/.git',
                 $targetDir . '/.gitignore'
             ));
-    }
-
-    /**
-     * Gets JsBundle version.
-     *
-     * @param Composer $composer
-     * @return string
-     */
-    private static function getVersion(Composer $composer)
-    {
-        $packages = $composer->getRepositoryManager()->getLocalRepository()->findPackages('arturdoruch/js-bundle');
-
-        if (!$package = array_shift($packages)) {
-            throw new \RuntimeException('The "arturdoruch/js-bundle" package version could not be detected.');
-        }
-
-        $versionPaths = explode('.', $package->getPrettyVersion());
-        $versionPaths[0] = $versionPaths[0] - 1;
-
-        return implode('.', $versionPaths);
     }
 
 }
