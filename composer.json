@@ -11,7 +11,8 @@
         }
     ],
     "require": {
-        "symfony/framework-bundle": ">2.0||>=3.0",
+        "symfony/http-kernel": ">2.0||~3.0",
+        "symfony/filesystem": ">2.0||~3.0",
         "arturdoruch/bootstrap-bundle": "~1.0"
     },
     "autoload": {
