@@ -5,8 +5,7 @@ namespace ArturDoruch\JsBundle\Composer;
 use Composer\Package\Package;
 use Composer\Package\Version\VersionParser;
 use Composer\Script\Event;
-use Symfony\Component\Filesystem\Exception\IOException;
-use Symfony\Component\Filesystem\Filesystem;
+use Composer\Util\Filesystem;
 
 /**
  * @author Artur Doruch <arturdoruch@interia.pl>
@@ -41,7 +40,6 @@ class ScriptHandler
         $downloader->download($package, $targetDir);
 
         // Remove unwanted files
-        // Remove unwanted files
         $files = array(
             $targetDir . '/.git',
             $targetDir . '/.gitignore'
@@ -49,11 +47,8 @@ class ScriptHandler
 
         $fs = new Filesystem();
 
-        try {
-            //$fs->chmod($files, 0755, 0000, true);
-            $fs->remove($files);
-        } catch (IOException $e) {
-
+        foreach ($files as $file) {
+            $fs->remove($file);
         }
     }
 
