@@ -51,5 +51,4 @@ class ScriptHandler
             $fs->remove($file);
         }
     }
-
 }

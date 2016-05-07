@@ -57,6 +57,5 @@ class ResponseUtils
 
         return $data;
     }
-
 }
  
