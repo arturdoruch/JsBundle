@@ -4,6 +4,7 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.46);
     margin: 20px 0;
     padding: 7px 15px;
+    overflow: hidden;
 }
 
 .ardo-filter-table-form .button-widgets {

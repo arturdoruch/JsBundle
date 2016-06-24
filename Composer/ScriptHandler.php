@@ -22,7 +22,7 @@ class ScriptHandler
     {
         $composer = $event->getComposer();
 
-        $version = '1.0.1';
+        $version = '1.0.3';
         $targetDir = __DIR__ . '/../Resources/public/js';
 
         $versionParser = new VersionParser();
