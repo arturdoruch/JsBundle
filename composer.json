@@ -3,7 +3,7 @@
     "description": "Collection of useful JavaScript scripts as Symfony Bundle.",
     "type": "symfony-bundle",
     "license": "MIT",
-    "keywords": ["symfony2", "bundle", "java script", "utilities"],
+    "keywords": ["symfony", "bundle", "java script", "utilities"],
     "authors": [
         {
             "name": "Artur Doruch",
@@ -11,8 +11,9 @@
         }
     ],
     "require": {
-        "symfony/http-kernel": ">2.0||~3.0",
-        "symfony/filesystem": ">2.0||~3.0",
+        "symfony/http-kernel": "^2.8||^3.0",
+        "symfony/filesystem": "^2.8||^3.0",
+        "symfony/form": "^2.8||^3.0",
         "arturdoruch/bootstrap-bundle": "~1.0"
     },
     "autoload": {

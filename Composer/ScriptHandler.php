@@ -40,10 +40,10 @@ class ScriptHandler
         $downloader->download($package, $targetDir);
 
         // Remove unwanted files
-        $files = array(
+        $files = [
             $targetDir . '/.git',
             $targetDir . '/.gitignore'
-        );
+        ];
 
         $fs = new Filesystem();
 

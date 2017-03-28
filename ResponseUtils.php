@@ -37,7 +37,7 @@ class ResponseUtils
      */
     public static function parseJson($json, $defaultKeys = null)
     {
-        $data = array();
+        $data = [];
 
         if (!empty($defaultKeys)) {
             if (is_array($defaultKeys)) {
