@@ -20,10 +20,14 @@ class ScriptHandler
      */
     public static function installJs(Event $event)
     {
-        $composer = $event->getComposer();
-
-        $version = '1.0.3';
+        $version = '1.0.4';
         $targetDir = __DIR__ . '/../Resources/public/js';
+
+        if ($version === $installedVersion = self::getInstalledVersion($targetDir)) {
+            $event->getIO()->write('The JavaScript files from package arturdoruch/js v' . $version . ' are already installed.');
+
+            return;
+        }
 
         $versionParser = new VersionParser();
         $normalizedVersion = $versionParser->normalize($version);
@@ -35,9 +39,12 @@ class ScriptHandler
         $package->setSourceReference($version);
         $package->setSourceUrl('https://github.com/arturdoruch/Js');
 
-        // Download the JsBundle
+        // Download the arturdoruch/js package and write into target dir.
+        $composer = $event->getComposer();
         $downloader = $composer->getDownloadManager()->getDownloader('git');
         $downloader->download($package, $targetDir);
+
+        self::writePackageVersion($targetDir, $version);
 
         // Remove unwanted files
         $files = [
@@ -50,5 +57,30 @@ class ScriptHandler
         foreach ($files as $file) {
             $fs->remove($file);
         }
+    }
+
+    /**
+     * @param string $targetDir
+     *
+     * @return null|string
+     */
+    private static function getInstalledVersion($targetDir)
+    {
+        if (!file_exists($filename = $targetDir . '/version.txt')) {
+            return null;
+        }
+
+        return trim(file_get_contents($filename));
+    }
+
+    /**
+     * Writes version of downloaded arturdoruch/js package into txt file.
+     *
+     * @param string $targetDir
+     * @param string $version
+     */
+    private static function writePackageVersion($targetDir, $version)
+    {
+        file_put_contents($version, $targetDir . '/version.txt');
     }
 }
