@@ -44,7 +44,7 @@ class ScriptHandler
         $downloader = $composer->getDownloadManager()->getDownloader('git');
         $downloader->download($package, $targetDir);
 
-        self::writePackageVersion($targetDir, $version);
+        self::writePackageVersion($version, $targetDir);
 
         // Remove unwanted files
         $files = [
@@ -79,8 +79,8 @@ class ScriptHandler
      * @param string $targetDir
      * @param string $version
      */
-    private static function writePackageVersion($targetDir, $version)
+    private static function writePackageVersion($version, $targetDir)
     {
-        file_put_contents($version, $targetDir . '/version.txt');
+        file_put_contents($targetDir . '/version.txt', $version);
     }
 }
