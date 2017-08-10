@@ -29,6 +29,6 @@ class RequestHelper
             }
         }
 
-        return array_merge($parameters, $defaults);
+        return array_merge($defaults, $parameters);
     }
 }

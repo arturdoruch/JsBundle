@@ -24,8 +24,7 @@ class ScriptHandler
         $targetDir = __DIR__ . '/../Resources/public/js';
 
         if ($version === $installedVersion = self::getInstalledVersion($targetDir)) {
-            $event->getIO()->write('The JavaScript files from package arturdoruch/js v' . $version . ' are already installed.');
-
+            //$event->getIO()->write('The JavaScript files from package arturdoruch/js v' . $version . ' are already installed.');
             return;
         }
 
