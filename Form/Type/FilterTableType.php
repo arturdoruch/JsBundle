@@ -12,11 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type as Type;
  */
 class FilterTableType extends AbstractType
 {
-    public function getName()
-    {
-        return 'filter_table';
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -46,7 +41,8 @@ class FilterTableType extends AbstractType
         $resolver->addAllowedTypes('selected', 'integer');
     }
 
-    private function getLimitChoices($options)
+
+    private function getLimitChoices(array $options)
     {
         $choices = [];
         foreach ($options['limit_choices'] as $value) {
