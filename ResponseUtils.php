@@ -5,12 +5,16 @@ namespace ArturDoruch\JsBundle;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
+ * @deprecated Use ArturDoruch\JsBundle\RequestHelper class instead.
+ *
  * @author Artur Doruch <arturdoruch@interia.pl>
  */
 class ResponseUtils
 {
     /**
      * Gets parameters from ajax request.
+     *
+     * @deprecated
      *
      * @param Request      $request
      * @param array|string $defaultKeys Default keys (if is array with their values) that should be in returned array.
@@ -29,6 +33,8 @@ class ResponseUtils
 
     /**
      * Parse json object into array
+     *
+     * @deprecated
      *
      * @param string $json JSON object
      * @param array|string $defaultKeys Default keys (if is array with their values) which should be in returned array.
