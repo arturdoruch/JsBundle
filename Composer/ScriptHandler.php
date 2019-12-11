@@ -20,7 +20,7 @@ class ScriptHandler
      */
     public static function installJs(Event $event)
     {
-        $version = '1.0.9';
+        $version = '1.1.0';
         $targetDir = __DIR__ . '/../Resources/public/js';
 
         if ($version === $installedVersion = self::getInstalledVersion($targetDir)) {
