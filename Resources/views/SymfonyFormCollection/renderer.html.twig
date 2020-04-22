@@ -1,0 +1,28 @@
+{#
+ Renders Symfony form collection type items.
+ Parameters:
+    collection (FormView) The collection child to render.
+#}
+{% macro render(collection) %}
+    {% set prototype = collection.vars.prototype %}
+    {% set noLabel = prototype.children|length == 0 and prototype.vars.label == false %}
+    {% set removeButton %}
+<div class="form-collection__button-container form-collection__remove-item-button-container">
+    {% include '@ArturDoruchJs/SymfonyFormCollection/remove_item_button.html.twig' %}
+</div>
+    {% endset %}
+
+    <div data-form-collection="{{ collection.vars.name }}" data-template="{{ form_row(prototype)|e }} {{ removeButton|e }}">
+        <div class="form-collection__button-container form-collection__add-item-button-container">
+            {% include '@ArturDoruchJs/SymfonyFormCollection/add_item_button.html.twig' %}
+        </div>
+        <ul class="form-collection__list{% if noLabel %} form-collection__list--no-label{% endif %}">
+        {% for item in collection %}
+            <li>
+                {{ form_row(item) }}
+                {{ removeButton }}
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endmacro %}

@@ -1,10 +1,10 @@
 # JsBundle
 
-Collection of useful JavaScript scripts as Symfony Bundle.
+Collection of JavaScript scripts and components as Symfony Bundle.
 
 ## Installation
 
-Via composer. Add the following lines to your main composer.json file, "scripts" and "repositories" block.
+Add the following lines into application composer.json file at "scripts" and "repositories" blocks.
 ```json
 "scripts": {
     "post-install-cmd": [
@@ -32,7 +32,6 @@ Install bundle by running cli command.
 Add ArturDoruchJsBundle to your application kernel
 
 ```php
-// app/AppKernel.php
 public function registerBundles()
 {
     return array(

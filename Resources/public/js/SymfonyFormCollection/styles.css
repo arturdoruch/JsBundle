@@ -1,0 +1,48 @@
+/* Form collection styles */
+ul.form-collection__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul.form-collection__list > li {
+    position: relative;
+    margin: 1em 0;
+}
+
+ul.form-collection__list .help-block {
+    margin-bottom: 0;
+}
+
+ul.form-collection__list .form-group {
+    margin-bottom: 0;
+}
+
+ul.form-collection__list--no-label .form-group *[class^="col-"]:first-child {
+    width: 0;
+    padding: 0;
+}
+
+/* Action buttons */
+/*.form-collection__button-container button,
+.form-collection__button-container a {
+    margin-right: 7px;
+}*/
+
+.form-collection__add-item-button-container {
+    border-bottom: 1px solid #cfcfcf;
+    padding-bottom: 5px;
+    text-align: right;
+}
+
+.form-collection__remove-item-button-container {
+    margin-top: 0.5em;
+    text-align: right;
+}
+
+ul.form-collection__list--no-label .form-collection__remove-item-button-container {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    margin: 0;
+}
