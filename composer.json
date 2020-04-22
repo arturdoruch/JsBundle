@@ -1,6 +1,6 @@
 {
     "name": "arturdoruch/js-bundle",
-    "description": "Collection of useful JavaScript scripts as Symfony Bundle.",
+    "description": "Collection of JavaScript scripts and components as Symfony Bundle.",
     "type": "symfony-bundle",
     "license": "MIT",
     "keywords": ["symfony", "bundle", "java script", "utilities"],
@@ -11,10 +11,6 @@
         }
     ],
     "require": {
-        "symfony/http-kernel": "^2.8||^3.0",
-        "symfony/filesystem": "^2.8||^3.0",
-        "symfony/form": "^2.8||^3.0",
-        "arturdoruch/bootstrap-bundle": "~1.0"
     },
     "autoload": {
         "psr-4" : { "ArturDoruch\\JsBundle\\" : "" }
