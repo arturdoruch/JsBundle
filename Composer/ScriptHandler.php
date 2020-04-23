@@ -13,15 +13,15 @@ use Composer\Util\Filesystem;
 class ScriptHandler
 {
     /**
-     * Downloads js scripts from git repository
-     * @link https://github.com/arturdoruch/Js
+     * Downloads js scripts from git repository https://github.com/arturdoruch/Js
      *
      * @param Event $event
      */
     public static function installJs(Event $event)
     {
-        $version = '1.1.0';
+        $version = '1.2.0';
         $targetDir = __DIR__ . '/../Resources/public/js';
+        $downloadDir = __DIR__ . '/../Resources/public/_js';
 
         if ($version === $installedVersion = self::getInstalledVersion($targetDir)) {
             //$event->getIO()->write('The JavaScript files from package arturdoruch/js v' . $version . ' are already installed.');
@@ -32,30 +32,24 @@ class ScriptHandler
         $normalizedVersion = $versionParser->normalize($version);
 
         $package = new Package('arturdoruch/js', $normalizedVersion, $version);
-        $package->setTargetDir($targetDir);
+        $package->setTargetDir($downloadDir);
         $package->setInstallationSource('dist');
         $package->setSourceType('git');
         $package->setSourceReference($version);
         $package->setSourceUrl('https://github.com/arturdoruch/Js');
 
-        // Download the arturdoruch/js package and write into target dir.
+        // Download the arturdoruch/js package and write into downloading dir.
         $composer = $event->getComposer();
         $downloader = $composer->getDownloadManager()->getDownloader('git');
-        $downloader->download($package, $targetDir);
+        $downloader->download($package, $downloadDir);
 
-        self::writePackageVersion($version, $targetDir);
-
+        $filesystem = new Filesystem();
         // Remove unwanted files
-        $files = [
-            $targetDir . '/.git',
-            $targetDir . '/.gitignore'
-        ];
+        $filesystem->remove($downloadDir . '/.git');
+        $filesystem->remove($downloadDir . '/.gitignore');
 
-        $fs = new Filesystem();
-
-        foreach ($files as $file) {
-            $fs->remove($file);
-        }
+        $filesystem->copyThenRemove($downloadDir, $targetDir);
+        self::writePackageVersion($version, $targetDir);
     }
 
     /**
