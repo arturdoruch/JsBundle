@@ -19,7 +19,7 @@ class ScriptHandler
      */
     public static function installJs(Event $event)
     {
-        $version = '1.2.0';
+        $version = '1.2.1';
         $targetDir = __DIR__ . '/../Resources/public/js';
         $downloadDir = __DIR__ . '/../Resources/public/_js';
 
