@@ -3,7 +3,7 @@
     "description": "Collection of JavaScript scripts and components",
     "type": "symfony-bundle",
     "license": "MIT",
-    "keywords": ["symfony", "bundle", "java script", "utilities"],
+    "keywords": ["symfony", "bundle", "java script scripts", "java script components"],
     "authors": [
         {
             "name": "Artur Doruch",
@@ -11,7 +11,10 @@
         }
     ],
     "require": {
-        "arturdoruch/css-styles": "^1.0"
+        "arturdoruch/css-styles": "^1.0",
+        "symfony/dependency-injection": ">=2.8",
+        "symfony/config": ">=2.8",
+        "symfony/http-kernel": ">=2.8"
     },
     "autoload": {
         "psr-4" : { "ArturDoruch\\JsBundle\\" : "" }
