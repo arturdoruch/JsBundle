@@ -12,7 +12,7 @@
 </div>
     {% endset %}
 
-    <div data-form-collection="{{ collection.vars.name }}" data-template="{{ form_row(prototype)|e }} {{ removeButton|e }}">
+    <div data-form-collection="{{ collection.vars.id }}" data-template="{{ form_row(prototype)|e }} {{ removeButton|e }}">
         <div class="form-collection__button-container form-collection__add-item-button-container">
             {% include '@ArturDoruchJs/SymfonyFormCollection/add_item_button.html.twig' %}
         </div>
