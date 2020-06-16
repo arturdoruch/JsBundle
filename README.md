@@ -4,43 +4,38 @@ Collection of JavaScript scripts and components as Symfony Bundle.
 
 ## Installation
 
-Add the following lines into application composer.json file at "scripts" and "repositories" blocks.
-```json
-"scripts": {
-    "post-install-cmd": [
+1. Add the following lines into application composer.json file at "scripts" and "repositories" blocks.
+    ```json
+    "scripts": {
+        "post-install-cmd": [
+            ...
+            "ArturDoruch\\JsBundle\\Composer\\ScriptHandler::installJs"
+        ],
+        "post-update-cmd": [
+            ...
+            "ArturDoruch\\JsBundle\\Composer\\ScriptHandler::installJs"
+        ]
+    },
+    "repositories": [
         ...
-        "ArturDoruch\\JsBundle\\Composer\\ScriptHandler::installJs"
-    ],
-    "post-update-cmd": [
-        ...
-        "ArturDoruch\\JsBundle\\Composer\\ScriptHandler::installJs"
+        {
+            "type": "vcs",
+            "url": "https://github.com/arturdoruch/JsBundle"
+        }
     ]
-},
-"repositories": [
-    ...
+    ```
+
+2. Install bundle by running cli command `composer require "arturdoruch/js-bundle"`
+
+3. Register bundle in application kernel class.
+    ```php
+    public function registerBundles()
     {
-        "type": "vcs",
-        "url": "https://github.com/arturdoruch/JsBundle"
+        $bundles = [
+            // ...
+            new ArturDoruch\JsBundle\ArturDoruchJsBundle()
+        ];
     }
-]
-```
+    ```
 
-Install bundle by running cli command.
-
-```composer require "arturdoruch/js-bundle"```
-
-Add ArturDoruchJsBundle to your application kernel
-
-```php
-public function registerBundles()
-{
-    return array(
-        // ...
-        new ArturDoruch\JsBundle\ArturDoruchJsBundle()
-    );
-}
-```
-
-Install assets
-
-```console assets:install --symlink```
+4. Install assets `php bin/console assets:install --symlink`
